@@ -1,11 +1,12 @@
-Name:		retroarch
-Version:	0.9.8
-Release:	1
 Summary:	A modular multi-system emulator system
+Name:		retroarch
+Version:	0.9.9
+Release:	1
 Group:		Emulators
 License:	GPLv3
-URL:		http://www.libretro.org
+Url:		http://www.libretro.org
 Source:		http://themaister.net/retroarch-dl/%{name}-%{version}.tar.gz
+Patch0:		retroarch-0.9.9-ffmpeg.patch
 # ffmpeg part
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavformat)
@@ -44,6 +45,7 @@ to wrestle with an obfuscatory API.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 # Quickbuild script, not autotools
@@ -80,6 +82,6 @@ sed -i s,.*libretro_path.*,"libretro_path = \"%{_libdir}/libretro\"",g %{buildro
 %{_bindir}/%{name}-joyconfig
 %{_bindir}/%{name}-zip
 %{_bindir}/retrolaunch
-%{_iconsdir}/%{name}.png
+%{_datadir}/pixmaps/%{name}.png
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man1/%{name}-joyconfig.1*
