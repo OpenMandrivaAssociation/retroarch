@@ -1,12 +1,21 @@
+%define build_shaders 1
+
 Summary:	A modular multi-system emulator system
 Name:		retroarch
 Version:	0.9.9
-Release:	1
+Release:	2
 Group:		Emulators
 License:	GPLv3
 Url:		http://www.libretro.org
-Source:		http://themaister.net/retroarch-dl/%{name}-%{version}.tar.gz
+Source0:	http://themaister.net/retroarch-dl/%{name}-%{version}.tar.gz
+Source1:	%{name}.png
+Source2:	%{name}-shaders.tar.bz2
 Patch0:		retroarch-0.9.9-ffmpeg.patch
+BuildRequires:	imagemagick
+%if %{build_shaders}
+# for shaders support, requires non-free repo
+BuildRequires:	cg-devel
+%endif
 # ffmpeg part
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavformat)
@@ -44,7 +53,7 @@ mind so that the porter can worry about the port at hand instead of having
 to wrestle with an obfuscatory API.
 
 %prep
-%setup -q
+%setup -q -a2
 %patch0 -p1
 
 %build
@@ -62,7 +71,11 @@ to wrestle with an obfuscatory API.
 	--enable-threads \
 	--enable-xinerama \
 	--enable-zlib \
+%if %{build_shaders}
+	--enable-cg \
+%else
 	--disable-cg \
+%endif
 	--disable-egl \
 	--disable-jack \
 	--disable-oss \
@@ -75,6 +88,27 @@ to wrestle with an obfuscatory API.
 
 # Set path where to search for libretro
 sed -i s,.*libretro_path.*,"libretro_path = \"%{_libdir}/libretro\"",g %{buildroot}%{_sysconfdir}/%{name}.cfg
+sed -i s,.*video_shader_dir.*,"video_shader_dir = \"%{_var}/games/%{name}/shaders\"",g %{buildroot}%{_sysconfdir}/%{name}.cfg
+
+# install menu entry
+mkdir -p %{buildroot}%{_datadir}/applications/
+cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << EOF
+[Desktop Entry]
+Name=RetroArch
+Comment=A modular multi-system emulator system
+Exec=%{_bindir}/%{name}
+Icon=%{_datadir}/pixmaps/%{name}.png
+Terminal=false
+Type=Application
+Categories=Game;Emulator;
+EOF
+
+install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+
+%if %{build_shaders}
+mkdir -p %{buildroot}%{_var}/games/%{name}/shaders
+cp -r retroarch-shaders/* %{buildroot}%{_var}/games/%{name}/shaders/
+%endif
 
 %files
 %config(noreplace) %{_sysconfdir}/%{name}.cfg
@@ -82,6 +116,12 @@ sed -i s,.*libretro_path.*,"libretro_path = \"%{_libdir}/libretro\"",g %{buildro
 %{_bindir}/%{name}-joyconfig
 %{_bindir}/%{name}-zip
 %{_bindir}/retrolaunch
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
+%if %{build_shaders}
+%dir %attr(0777,root,root) %{_var}/games/%{name}/shaders
+%{_var}/games/%{name}/shaders/*
+%endif
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man1/%{name}-joyconfig.1*
+
