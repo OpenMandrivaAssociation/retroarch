@@ -1,4 +1,4 @@
-%define build_shaders 1
+%define build_shaders 0
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
