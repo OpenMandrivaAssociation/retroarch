@@ -1,3 +1,4 @@
+%define build_ffmpeg 1
 %define build_shaders 0
 
 Summary:	A modular multi-system emulator system
@@ -16,11 +17,13 @@ BuildRequires:	imagemagick
 # for shaders support, requires non-free repo
 BuildRequires:	cg-devel
 %endif
+%if %{build_ffmpeg}
 # ffmpeg part
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavformat)
 BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(libswscale)
+%endif
 # The rest
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(freetype2)
@@ -63,7 +66,11 @@ to wrestle with an obfuscatory API.
 	--enable-al \
 	--enable-alsa \
 	--enable-fbo \
+%if %{build_ffmpeg}
 	--enable-ffmpeg \
+%else
+	--disable-ffmpeg \
+%endif
 	--enable-netplay \
 	--enable-pulse \
 	--enable-sdl \
