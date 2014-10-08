@@ -1,14 +1,15 @@
 %define build_ffmpeg 1
-%define build_shaders 0
+%define build_shaders 1
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	0.9.9
-Release:	2
+Version:	1.0.0.2
+Release:	1
+License:	GPLv3+
 Group:		Emulators
-License:	GPLv3
 Url:		http://www.libretro.org
-Source0:	http://themaister.net/retroarch-dl/%{name}-%{version}.tar.gz
+# From git: https://github.com/libretro/RetroArch/tree/c52c8cd5b5eeab6c1f344982566c69c245551164
+Source0:	%{name}-%{version}.tar.bz2
 Source1:	%{name}.png
 Source2:	%{name}-shaders.tar.bz2
 Patch0:		retroarch-0.9.9-ffmpeg.patch
@@ -29,12 +30,15 @@ BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libpulse)
+BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(openal)
 BuildRequires:	pkgconfig(sdl)
 BuildRequires:	pkgconfig(SDL_image)
+BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xinerama)
+BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xv)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
@@ -54,6 +58,25 @@ a libretro port once and expect the same code to run on all the platforms
 that RetroArch supports. It's designed with simplicity and ease of use in
 mind so that the porter can worry about the port at hand instead of having
 to wrestle with an obfuscatory API.
+
+%files
+%config(noreplace) %{_sysconfdir}/%{name}.cfg
+%{_bindir}/%{name}
+%if %{build_shaders}
+%{_bindir}/%{name}-cg2glsl
+%endif
+%{_bindir}/%{name}-joyconfig
+%{_bindir}/retrolaunch
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
+%if %{build_shaders}
+%dir %attr(0777,root,root) %{_var}/games/%{name}/shaders
+%{_var}/games/%{name}/shaders/*
+%endif
+%{_mandir}/man1/%{name}.1*
+%{_mandir}/man1/%{name}-joyconfig.1*
+
+#----------------------------------------------------------------------------
 
 %prep
 %setup -q -a2
@@ -116,19 +139,4 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 mkdir -p %{buildroot}%{_var}/games/%{name}/shaders
 cp -r retroarch-shaders/* %{buildroot}%{_var}/games/%{name}/shaders/
 %endif
-
-%files
-%config(noreplace) %{_sysconfdir}/%{name}.cfg
-%{_bindir}/%{name}
-%{_bindir}/%{name}-joyconfig
-%{_bindir}/%{name}-zip
-%{_bindir}/retrolaunch
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
-%if %{build_shaders}
-%dir %attr(0777,root,root) %{_var}/games/%{name}/shaders
-%{_var}/games/%{name}/shaders/*
-%endif
-%{_mandir}/man1/%{name}.1*
-%{_mandir}/man1/%{name}-joyconfig.1*
 
