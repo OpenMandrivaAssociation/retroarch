@@ -10,6 +10,7 @@ Url:		http://www.libretro.org
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
 BuildRequires:	imagemagick
 #BuildRequires:	cg-devel
+BuildRequires:  pkgconfig(caca)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavformat)
 BuildRequires:	pkgconfig(libavutil)
@@ -30,6 +31,13 @@ BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xv)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
+#Qt
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Gui)
+BuildRequires:  pkgconfig(Qt5Widgets)
+BuildRequires:  pkgconfig(Qt5Concurrent)
+BuildRequires:  pkgconfig(Qt5Network)
+
 Requires:	libretro
 Recommends:	retroarch-phoenix
 
