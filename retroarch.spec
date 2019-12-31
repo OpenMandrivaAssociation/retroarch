@@ -71,7 +71,6 @@ to wrestle with an obfuscatory API.
 	--prefix=%{_prefix} \
 	--enable-al \
 	--enable-alsa \
-	--enable-fbo \
 	--enable-ffmpeg \
 	--enable-netplay \
 	--enable-networking \
