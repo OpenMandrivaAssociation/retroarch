@@ -83,7 +83,6 @@ to wrestle with an obfuscatory API.
 	--disable-egl \
 	--disable-jack \
 	--disable-oss \
-	--disable-python \
 	--disable-vg
 %make_build
 
