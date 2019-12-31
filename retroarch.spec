@@ -76,7 +76,6 @@ to wrestle with an obfuscatory API.
 	--enable-pulse \
 	--enable-qt \
 	--enable-sdl \
-	--enable-sdl_image \
 	--enable-threads \
 	--enable-xinerama \
 	--enable-zlib \
