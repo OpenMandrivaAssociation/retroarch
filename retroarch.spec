@@ -72,7 +72,6 @@ to wrestle with an obfuscatory API.
 	--enable-al \
 	--enable-alsa \
 	--enable-ffmpeg \
-	--enable-netplay \
 	--enable-networking \
 	--enable-pulse \
 	--enable-qt \
