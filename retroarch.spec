@@ -50,17 +50,13 @@ to wrestle with an obfuscatory API.
 %files
 %config(noreplace) %{_sysconfdir}/%{name}.cfg
 %{_bindir}/%{name}
-%if %{build_shaders}
 %{_bindir}/%{name}-cg2glsl
-%endif
 %{_bindir}/%{name}-joyconfig
 %{_bindir}/retrolaunch
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
-%if %{build_shaders}
 %dir %attr(0777,root,root) %{_var}/games/%{name}/shaders
 %{_var}/games/%{name}/shaders/*
-%endif
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man1/%{name}-joyconfig.1*
 
