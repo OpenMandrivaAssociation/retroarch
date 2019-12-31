@@ -115,9 +115,3 @@ Categories=Game;Emulator;
 EOF
 
 install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
-
-%if %{build_shaders}
-mkdir -p %{buildroot}%{_var}/games/%{name}/shaders
-cp -r retroarch-shaders/* %{buildroot}%{_var}/games/%{name}/shaders/
-%endif
-
