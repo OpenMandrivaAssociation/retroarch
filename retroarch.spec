@@ -9,7 +9,7 @@ Group:		Emulators
 Url:		http://www.libretro.org
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
 BuildRequires:	imagemagick
-BuildRequires:	cg-devel
+#BuildRequires:	cg-devel
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavformat)
 BuildRequires:	pkgconfig(libavutil)
