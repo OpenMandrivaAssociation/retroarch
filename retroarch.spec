@@ -1,31 +1,19 @@
-%define build_ffmpeg 1
-%define build_shaders 1
+%define  oname RetroArch
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	1.0.0.2
-Release:	2
+Version:	1.8.2
+Release:	1
 License:	GPLv3+
 Group:		Emulators
 Url:		http://www.libretro.org
-# From git: https://github.com/libretro/RetroArch/tree/c52c8cd5b5eeab6c1f344982566c69c245551164
-Source0:	%{name}-%{version}.tar.bz2
-Source1:	%{name}.png
-Source2:	%{name}-shaders.tar.bz2
-Patch0:		retroarch-0.9.9-ffmpeg.patch
+Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
 BuildRequires:	imagemagick
-%if %{build_shaders}
-# for shaders support, requires non-free repo
 BuildRequires:	cg-devel
-%endif
-%if %{build_ffmpeg}
-# ffmpeg part
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavformat)
 BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(libswscale)
-%endif
-# The rest
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(gl)
@@ -43,7 +31,7 @@ BuildRequires:	pkgconfig(xv)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
 Requires:	libretro
-Suggests:	retroarch-phoenix
+Recommends:	retroarch-phoenix
 
 %description
 RetroArch is a modular multi-system emulator system that is designed to be
@@ -79,8 +67,7 @@ to wrestle with an obfuscatory API.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -a2
-%patch0 -p1
+%setup -qn %{oname}-%{version}
 
 %build
 # Quickbuild script, not autotools
@@ -89,32 +76,26 @@ to wrestle with an obfuscatory API.
 	--enable-al \
 	--enable-alsa \
 	--enable-fbo \
-%if %{build_ffmpeg}
 	--enable-ffmpeg \
-%else
-	--disable-ffmpeg \
-%endif
 	--enable-netplay \
+	--enable-networking \
 	--enable-pulse \
+	--enable-qt \
 	--enable-sdl \
 	--enable-sdl_image \
 	--enable-threads \
 	--enable-xinerama \
 	--enable-zlib \
-%if %{build_shaders}
 	--enable-cg \
-%else
-	--disable-cg \
-%endif
 	--disable-egl \
 	--disable-jack \
 	--disable-oss \
 	--disable-python \
 	--disable-vg
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # Set path where to search for libretro
 sed -i s,.*libretro_path.*,"libretro_path = \"%{_libdir}/libretro\"",g %{buildroot}%{_sysconfdir}/%{name}.cfg
