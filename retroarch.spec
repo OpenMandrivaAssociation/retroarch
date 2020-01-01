@@ -99,7 +99,7 @@ to wrestle with an obfuscatory API.
 	--enable-threads \
 	--enable-xinerama \
 	--enable-zlib \
-	--enable-cg \
+	--disable-cg \
 	--enable-egl \
 	--disable-jack \
 	--disable-oss \
