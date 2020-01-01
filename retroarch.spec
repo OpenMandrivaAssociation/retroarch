@@ -68,6 +68,7 @@ mind so that the porter can worry about the port at hand instead of having
 to wrestle with an obfuscatory API.
 
 %files
+%doc COPYING README.md
 %config(noreplace) %{_sysconfdir}/%{name}.cfg
 %{_bindir}/%{name}
 %{_bindir}/%{name}-cg2glsl
@@ -75,10 +76,11 @@ to wrestle with an obfuscatory API.
 #{_bindir}/retrolaunch
 %{_datadir}/applications/%{name}.desktop
 #{_datadir}/pixmaps/%{name}.png
+%(_iconsdir)/pixmaps/retroarch.svg
 #dir %attr(0777,root,root) %{_var}/games/%{name}/shaders
 #{_var}/games/%{name}/shaders/*
-#{_mandir}/man1/%{name}.1*
-#{_mandir}/man1/%{name}-joyconfig.1*
+%{_mandir}/man6/retroarch*
+
 
 #----------------------------------------------------------------------------
 
@@ -114,16 +116,16 @@ sed -i s,.*libretro_path.*,"libretro_path = \"%{_libdir}/libretro\"",g %{buildro
 sed -i s,.*video_shader_dir.*,"video_shader_dir = \"%{_var}/games/%{name}/shaders\"",g %{buildroot}%{_sysconfdir}/%{name}.cfg
 
 # install menu entry
-mkdir -p %{buildroot}%{_datadir}/applications/
-cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << EOF
-[Desktop Entry]
-Name=RetroArch
-Comment=A modular multi-system emulator system
-Exec=%{_bindir}/%{name}
-Icon=%{_datadir}/pixmaps/%{name}.png
-Terminal=false
-Type=Application
-Categories=Game;Emulator;
-EOF
+#mkdir -p %{buildroot}%{_datadir}/applications/
+#cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << EOF
+#[Desktop Entry]
+#Name=RetroArch
+#Comment=A modular multi-system emulator system
+#Exec=%{_bindir}/%{name}
+#Icon=%{_datadir}/pixmaps/%{name}.png
+#Terminal=false
+#Type=Application
+#Categories=Game;Emulator;
+#EOF
 
 #install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
