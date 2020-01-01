@@ -126,4 +126,4 @@ Type=Application
 Categories=Game;Emulator;
 EOF
 
-install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+#install -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
