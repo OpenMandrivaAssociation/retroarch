@@ -20,12 +20,15 @@ BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:  pkgconfig(dri)
 BuildRequires:	pkgconfig(gl)
+BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  egl-devel
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(openal)
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(SDL_image)
 BuildRequires:	pkgconfig(udev)
+BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xinerama)
@@ -34,6 +37,12 @@ BuildRequires:	pkgconfig(xv)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:  pkgconfig(flac)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-cursor)
+BuildRequires:  pkgconfig(wayland-egl)
+BuildRequires:  pkgconfig(wayland-egl-backend)
+BuildRequires:  pkgconfig(wayland-scanner)
+BuildRequires:  pkgconfig(wayland-server)
 #Qt
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
@@ -91,7 +100,7 @@ to wrestle with an obfuscatory API.
 	--enable-xinerama \
 	--enable-zlib \
 	--enable-cg \
-	--disable-egl \
+	--enable-egl \
 	--disable-jack \
 	--disable-oss \
 	--disable-vg
