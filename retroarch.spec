@@ -76,6 +76,7 @@ to wrestle with an obfuscatory API.
 #{_bindir}/retrolaunch
 %{_datadir}/applications/%{name}.desktop
 #{_datadir}/pixmaps/%{name}.png
+/usr/share/pixmaps/retroarch.svg
 #(_datadir)/pixmaps/retroarch.svg
 #dir %attr(0777,root,root) %{_var}/games/%{name}/shaders
 #{_var}/games/%{name}/shaders/*
