@@ -18,11 +18,12 @@ BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(libswscale)
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(freetype2)
+BuildRequires:  pkgconfig(dri)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(openal)
-BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(SDL_image)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(x11)
@@ -85,7 +86,7 @@ to wrestle with an obfuscatory API.
 	--enable-networking \
 	--enable-pulse \
 	--enable-qt \
-	--enable-sdl \
+	--enable-sdl2 \
 	--enable-threads \
 	--enable-xinerama \
 	--enable-zlib \
