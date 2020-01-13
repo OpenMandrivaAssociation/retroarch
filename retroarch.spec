@@ -50,7 +50,7 @@ BuildRequires:  pkgconfig(Qt5Widgets)
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Network)
 
-Requires:	libretro
+Recommends:	libretro
 Recommends:	retroarch-phoenix
 
 %description
