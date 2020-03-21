@@ -2,7 +2,7 @@
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	1.8.4
+Version:	1.8.5
 Release:	1
 License:	GPLv3+
 Group:		Emulators
