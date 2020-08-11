@@ -82,6 +82,7 @@ to wrestle with an obfuscatory API.
 #dir %attr(0777,root,root) %{_var}/games/%{name}/shaders
 #{_var}/games/%{name}/shaders/*
 %{_mandir}/man6/retroarch*
+%{_datadir}/metainfo/com.libretro.RetroArch.appdata.xml
 
 
 #----------------------------------------------------------------------------
