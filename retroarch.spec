@@ -1,3 +1,6 @@
+%define _disable_ld_no_undefined 1
+%define _disable_lto 1
+
 %global debug_package %{nil}
 %define  oname RetroArch
 
