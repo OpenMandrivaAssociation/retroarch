@@ -1,4 +1,4 @@
-%global debug_package %{nil}
+#global debug_package %{nil}
 %define  oname RetroArch
 
 Summary:	A modular multi-system emulator system
