@@ -1,9 +1,10 @@
-%global debug_package %{nil}
+#global debug_package %{nil}
+%define _empty_manifest_terminate_build 0
 %define  oname RetroArch
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	1.9.0
+Version:	1.9.4
 Release:	1
 License:	GPLv3+
 Group:		Emulators
