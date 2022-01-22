@@ -14,10 +14,13 @@ BuildRequires:	imagemagick
 #BuildRequires:	cg-devel
 BuildRequires:  mbedtls-devel
 BuildRequires:  pkgconfig(caca)
-BuildRequires:	pkgconfig(libavcodec)
-BuildRequires:	pkgconfig(libavformat)
-BuildRequires:	pkgconfig(libavutil)
-BuildRequires:	pkgconfig(libswscale)
+# RetroArch still (as of 1.10.0) not support ffmpeg5 so let's disable ffmpeg5 BR's and use compat package with ffmpeg4 (angry.p)
+#BuildRequires:	pkgconfig(libavcodec)
+#BuildRequires:	pkgconfig(libavformat)
+#BuildRequires:	pkgconfig(libavutil)
+#BuildRequires:	pkgconfig(libswscale)
+# FFMPEG4
+BuildRequires:	ffmpeg4-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:  pkgconfig(dri)
