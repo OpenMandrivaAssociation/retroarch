@@ -4,7 +4,7 @@
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	1.10.0
+Version:	1.10.2
 Release:	1
 License:	GPLv3+
 Group:		Emulators
@@ -15,12 +15,12 @@ BuildRequires:	imagemagick
 BuildRequires:  mbedtls-devel
 BuildRequires:  pkgconfig(caca)
 # RetroArch still (as of 1.10.0) not support ffmpeg5 so let's disable ffmpeg5 BR's and use compat package with ffmpeg4 (angry.p)
-#BuildRequires:	pkgconfig(libavcodec)
-#BuildRequires:	pkgconfig(libavformat)
-#BuildRequires:	pkgconfig(libavutil)
-#BuildRequires:	pkgconfig(libswscale)
+BuildRequires:	pkgconfig(libavcodec)
+BuildRequires:	pkgconfig(libavformat)
+BuildRequires:	pkgconfig(libavutil)
+BuildRequires:	pkgconfig(libswscale)
 # FFMPEG4
-BuildRequires:	ffmpeg4-devel
+#BuildRequires:	ffmpeg4-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:  pkgconfig(dri)
