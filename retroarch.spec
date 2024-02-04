@@ -4,7 +4,7 @@
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	1.16.0.3
+Version:	1.17.0
 Release:	1
 License:	GPLv3+
 Group:		Emulators
