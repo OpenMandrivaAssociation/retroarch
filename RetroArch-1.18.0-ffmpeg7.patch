@@ -1,0 +1,63 @@
+--- RetroArch-1.18.0/cores/libretro-ffmpeg/ffmpeg_core.c.orig	2024-04-15 16:35:51.456479709 +0100
++++ RetroArch-1.18.0/cores/libretro-ffmpeg/ffmpeg_core.c	2024-04-15 16:53:04.673802077 +0100
+@@ -1726,8 +1726,12 @@
+    {
+       swr[i] = swr_alloc();
+ 
+-      av_opt_set_int(swr[i], "in_channel_layout", actx[i]->channel_layout, 0);
+-      av_opt_set_int(swr[i], "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
++      AVChannelLayout l;
++      av_channel_layout_from_mask(&l, actx[i]->channel_layout);
++      AVChannelLayout stereo = AV_CHANNEL_LAYOUT_STEREO;
++
++      av_opt_set_chlayout(swr[i], "in_chlayout", &l, 0);
++      av_opt_set_chlayout(swr[i], "out_chlayout", &stereo, 0);
+       av_opt_set_int(swr[i], "in_sample_rate", actx[i]->sample_rate, 0);
+       av_opt_set_int(swr[i], "out_sample_rate", media.sample_rate, 0);
+       av_opt_set_int(swr[i], "in_sample_fmt", actx[i]->sample_fmt, 0);
+--- RetroArch-1.18.0/record/drivers/record_ffmpeg.c.orig	2024-04-15 16:38:46.799044473 +0100
++++ RetroArch-1.18.0/record/drivers/record_ffmpeg.c	2024-04-15 16:49:38.005610621 +0100
+@@ -301,8 +301,8 @@
+    audio->codec                 = avcodec_alloc_context3(codec);
+ 
+    audio->codec->codec_type     = AVMEDIA_TYPE_AUDIO;
+-   audio->codec->channels       = param->channels;
+-   audio->codec->channel_layout = (param->channels > 1)
++   audio->codec->ch_layout.nb_channels  = param->channels;
++   audio->codec->ch_layout.u.mask       = (param->channels > 1)
+       ? AV_CH_LAYOUT_STEREO : AV_CH_LAYOUT_MONO;
+ 
+    ffmpeg_audio_resolve_format(audio, codec);
+@@ -353,7 +353,7 @@
+ 
+    audio->buffer = (uint8_t*)av_malloc(
+          audio->codec->frame_size *
+-         audio->codec->channels *
++         audio->codec->ch_layout.nb_channels *
+          audio->sample_size);
+ 
+    if (!audio->buffer)
+@@ -1342,20 +1342,20 @@
+ 
+    frame->nb_samples     = handle->audio.frames_in_buffer;
+    frame->format         = handle->audio.codec->sample_fmt;
+-   frame->channel_layout = handle->audio.codec->channel_layout;
++   av_channel_layout_copy(&frame->channel_layout, &handle->audio.codec->ch_layout);
+    frame->pts            = handle->audio.frame_cnt;
+ 
+    planarize_audio(handle);
+ 
+    samples_size          = av_samples_get_buffer_size(
+          NULL,
+-         handle->audio.codec->channels,
++         handle->audio.codec->ch_layout.nb_channels,
+          handle->audio.frames_in_buffer,
+          handle->audio.codec->sample_fmt, 0);
+ 
+    av_frame_get_buffer(frame, 0);
+    avcodec_fill_audio_frame(frame,
+-         handle->audio.codec->channels,
++         handle->audio.codec->ch_layout.nb_channels,
+          handle->audio.codec->sample_fmt,
+          handle->audio.is_planar
+          ? (uint8_t*)handle->audio.planar_buf :

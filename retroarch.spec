@@ -10,6 +10,7 @@ License:	GPLv3+
 Group:		Emulators
 Url:		http://www.libretro.org
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
+Patch1:		RetroArch-1.18.0-ffmpeg7.patch
 BuildRequires:	imagemagick
 #BuildRequires:	cg-devel
 BuildRequires:  mbedtls-devel
@@ -89,7 +90,7 @@ to wrestle with an obfuscatory API.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn %{oname}-%{version}
+%autosetup -p1 -n %{oname}-%{version}
 
 %build
 # Quickbuild script, not autotools
