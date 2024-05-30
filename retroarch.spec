@@ -1,3 +1,4 @@
+%global optflags %{optflags} -Wno-int-conversion
 #global debug_package %{nil}
 #define _empty_manifest_terminate_build 0
 %undefine _debugsource_packages
