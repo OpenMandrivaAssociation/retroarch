@@ -1,0 +1,20 @@
+diff -uraN RetroArch-1.19.0/gfx/drivers_context/wayland_ctx.c omv-RetroArch-1.19.0/gfx/drivers_context/wayland_ctx.c
+--- RetroArch-1.19.0/gfx/drivers_context/wayland_ctx.c	2024-05-30 05:03:48.000000000 +0200
++++ omv-RetroArch-1.19.0/gfx/drivers_context/wayland_ctx.c	2024-05-30 17:00:39.795042143 +0200
+@@ -512,14 +512,14 @@
+    wl_callback_destroy(cb);
+ }
+ 
+-static const struct wl_callback_listener wl_surface_frame_listener = { 
++static const struct wl_callback_listener wl_surface_frame_listener = {
+    .done = wl_surface_frame_done,
+ };
+ 
+ static void gfx_ctx_wl_swap_buffers(void *data)
+ {
+ #ifdef HAVE_EGL
+-   struct wl_callback *cb; 
++   struct wl_callback *cb;
+    gfx_ctx_wayland_data_t *wl     = (gfx_ctx_wayland_data_t*)data;
+    settings_t *settings           = config_get_ptr();
+    unsigned max_swapchain_images  = settings->uints.video_max_swapchain_images;
