@@ -12,6 +12,7 @@ License:	GPLv3+
 Group:		Emulators
 Url:		http://www.libretro.org
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
+Patch0:		pacz.patch
 
 BuildRequires:	imagemagick
 #BuildRequires:	cg-devel
