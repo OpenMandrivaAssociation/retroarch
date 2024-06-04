@@ -1,16 +1,14 @@
-#global debug_package %{nil}
-%define _empty_manifest_terminate_build 0
+%undefine _debugsource_packages
 %define  oname RetroArch
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	1.18.0
-Release:	2
+Version:	1.19.0
+Release:	1
 License:	GPLv3+
 Group:		Emulators
 Url:		http://www.libretro.org
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
-Patch1:		RetroArch-1.18.0-ffmpeg7.patch
 BuildRequires:	imagemagick
 #BuildRequires:	cg-devel
 BuildRequires:  mbedtls-devel
