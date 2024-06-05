@@ -1,0 +1,32 @@
+diff -up RetroArch-1.19.0/gfx/common/egl_common.c.omv~ RetroArch-1.19.0/gfx/common/egl_common.c
+--- RetroArch-1.19.0/gfx/common/egl_common.c.omv~	2024-06-05 18:10:06.629034436 +0200
++++ RetroArch-1.19.0/gfx/common/egl_common.c	2024-06-05 18:10:44.489447018 +0200
+@@ -603,14 +603,14 @@ bool egl_create_context(egl_ctx_data_t *
+    return true;
+ }
+ 
+-bool egl_create_surface(egl_ctx_data_t *egl, void *native_window)
++bool egl_create_surface(egl_ctx_data_t *egl, NativeWindowType native_window)
+ {
+    EGLint window_attribs[] = {
+ 	   EGL_RENDER_BUFFER, EGL_BACK_BUFFER,
+ 	   EGL_NONE,
+    };
+ 
+-   egl->surf = _egl_create_window_surface(egl->dpy, egl->config, (NativeWindowType)native_window, window_attribs);
++   egl->surf = _egl_create_window_surface(egl->dpy, egl->config, native_window, window_attribs);
+ 
+    if (egl->surf == EGL_NO_SURFACE)
+       return false;
+diff -up RetroArch-1.19.0/gfx/common/egl_common.h.omv~ RetroArch-1.19.0/gfx/common/egl_common.h
+--- RetroArch-1.19.0/gfx/common/egl_common.h.omv~	2024-06-05 18:10:24.245226438 +0200
++++ RetroArch-1.19.0/gfx/common/egl_common.h	2024-06-05 18:10:32.497316361 +0200
+@@ -114,7 +114,7 @@ bool egl_bind_api(EGLenum egl_api);
+ 
+ bool egl_create_context(egl_ctx_data_t *egl, const EGLint *egl_attribs);
+ 
+-bool egl_create_surface(egl_ctx_data_t *egl, void *native_window);
++bool egl_create_surface(egl_ctx_data_t *egl, NativeWindowType native_window);
+ 
+ bool egl_get_native_visual_id(egl_ctx_data_t *egl, EGLint *value);
+ 

@@ -54,6 +54,9 @@ BuildRequires:  pkgconfig(Qt5Network)
 Recommends:	libretro
 Recommends:	retroarch-phoenix
 
+%patchlist
+retroarch-egl.patch
+
 %description
 RetroArch is a modular multi-system emulator system that is designed to be
 fast, lightweight, and portable. It has features few other emulators frontends
