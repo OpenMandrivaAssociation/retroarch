@@ -7,7 +7,7 @@ Version:	1.19.0
 Release:	1
 License:	GPLv3+
 Group:		Emulators
-Url:		http://www.libretro.org
+Url:		https://www.libretro.org
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
 BuildRequires:	imagemagick
 #BuildRequires:	cg-devel
