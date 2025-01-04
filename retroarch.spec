@@ -49,11 +49,11 @@ BuildRequires:	pkgconfig(gbm)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	cmake(glslang)
 #Qt
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Gui)
-BuildRequires:  pkgconfig(Qt5Widgets)
-BuildRequires:  pkgconfig(Qt5Concurrent)
-BuildRequires:  pkgconfig(Qt5Network)
+BuildRequires:  pkgconfig(Qt6Core)
+BuildRequires:  pkgconfig(Qt6Gui)
+BuildRequires:  pkgconfig(Qt6Widgets)
+BuildRequires:  pkgconfig(Qt6Concurrent)
+BuildRequires:  pkgconfig(Qt6Network)
 
 Recommends:	libretro
 Recommends:	retroarch-phoenix
