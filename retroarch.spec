@@ -3,7 +3,7 @@
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	1.19.0
+Version:	1.20.0
 Release:	1
 License:	GPLv3+
 Group:		Emulators
@@ -49,11 +49,11 @@ BuildRequires:	pkgconfig(gbm)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	cmake(glslang)
 #Qt
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Gui)
-BuildRequires:  pkgconfig(Qt5Widgets)
-BuildRequires:  pkgconfig(Qt5Concurrent)
-BuildRequires:  pkgconfig(Qt5Network)
+BuildRequires:  pkgconfig(Qt6Core)
+BuildRequires:  pkgconfig(Qt6Gui)
+BuildRequires:  pkgconfig(Qt6Widgets)
+BuildRequires:  pkgconfig(Qt6Concurrent)
+BuildRequires:  pkgconfig(Qt6Network)
 
 Recommends:	libretro
 Recommends:	retroarch-phoenix
@@ -82,14 +82,14 @@ to wrestle with an obfuscatory API.
 %{_bindir}/%{name}-cg2glsl
 #{_bindir}/%{name}-joyconfig
 #{_bindir}/retrolaunch
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/com.libretro.RetroArch.desktop
 #{_datadir}/pixmaps/%{name}.png
-/usr/share/pixmaps/retroarch.svg
+%{_datadir}/pixmaps/com.libretro.RetroArch.svg
 #(_datadir)/pixmaps/retroarch.svg
 #dir %attr(0777,root,root) %{_var}/games/%{name}/shaders
 #{_var}/games/%{name}/shaders/*
 %{_mandir}/man6/retroarch*
-%{_datadir}/metainfo/com.libretro.RetroArch.appdata.xml
+%{_datadir}/metainfo/com.libretro.RetroArch.metainfo.xml
 
 
 #----------------------------------------------------------------------------
