@@ -4,7 +4,7 @@
 Summary:	A modular multi-system emulator system
 Name:		retroarch
 Version:	1.21.0
-Release:	2
+Release:	3
 License:	GPLv3+
 Group:		Emulators
 Url:		https://www.libretro.org
