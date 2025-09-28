@@ -1,10 +1,11 @@
 %undefine _debugsource_packages
 %define  oname RetroArch
+%define git .20252927
 
 Summary:	A modular multi-system emulator system
 Name:		retroarch
-Version:	1.21.0
-Release:	3
+Version:	1.21.0%{git}
+Release:	1
 License:	GPLv3+
 Group:		Emulators
 Url:		https://www.libretro.org
