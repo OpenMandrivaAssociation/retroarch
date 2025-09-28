@@ -9,6 +9,7 @@ License:	GPLv3+
 Group:		Emulators
 Url:		https://www.libretro.org
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
+Patch0:		https://github.com/libretro/RetroArch/commit/21776a2e59f5f5899ff2198c0df25a95b5020012.patch
 BuildRequires:	imagemagick
 #BuildRequires:	cg-devel
 BuildRequires:  mbedtls-devel
