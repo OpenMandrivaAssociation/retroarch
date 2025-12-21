@@ -10,6 +10,10 @@ License:	GPLv3+
 Group:		Emulators
 Url:		https://www.libretro.org
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:	imagemagick
 #BuildRequires:	cg-devel
 BuildRequires:  mbedtls-devel
