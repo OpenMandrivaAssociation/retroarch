@@ -5,11 +5,12 @@
 Summary:	A modular multi-system emulator system
 Name:		retroarch
 Version:	1.22.2
-Release:	4
+Release:	5
 License:	GPL-3.0-only
 Group:		Emulators
 Url:		https://www.retroarch.com
 Source0:	https://github.com/libretro/RetroArch/archive/v%{version}/%{oname}-%{version}.tar.gz
+BuildRequires:	make
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
