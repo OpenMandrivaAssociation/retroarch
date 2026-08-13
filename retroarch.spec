@@ -5,7 +5,7 @@
 Summary:	A modular multi-system emulator system
 Name:		retroarch
 Version:	1.22.2
-Release:	6
+Release:	7
 License:	GPL-3.0-only
 Group:		Emulators
 Url:		https://www.retroarch.com
@@ -66,6 +66,7 @@ Recommends:	retroarch-phoenix
 
 %patchlist
 retroarch-egl.patch
+retroarch-1.22.2-ffmpeg9.patch
 
 %description
 RetroArch is a modular multi-system emulator system that is designed to be
